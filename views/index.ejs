@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <style>
+    /* Estilos generales */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Estilos del fondo del cielo */
+    .sky {
+      /*background: linear-gradient(#87CEEB, #F5F5F5);*/
+      background-color: #87CEEB;
+      height: 100vh;
+      position: relative;
+    }
+
+    .sun {
+      background-color: #FFD700;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+    }
+
+    .cloud {
+      background-color: #FFFFFF;
+      width: 150px;
+      height: 80px;
+      border-radius: 50px;
+      position: absolute;
+      top: 60px;
+    }
+
+    .cloud:nth-child(2) {
+      top: 140px;
+      left: 100px;
+    }
+
+    .center-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      text-align: center;
+    }
+
+    .temperature {
+      font-size: 60px;
+      font-weight: bold;
+      color: #FFD700;
+      margin-bottom: 10px;
+      text-shadow: 0 0 10px rgba(255, 95, 2, 0.842);
+    }
+
+    .date {
+      font-size: 34px;
+      color: #FFFFFF;
+      margin-bottom: 5px;
+      text-shadow: 0 0 10px rgb(2, 2, 2);
+    }
+
+    .time {
+      font-size: 34px;
+      color: #FFFFFF;
+      margin-bottom: 5px;
+      text-shadow: 0 0 10px rgb(2, 2, 2);
+    }
+  </style>
+</head>
+<body>
+  <div class="sky">
+    <div class="sun"></div>
+    <div class="cloud"></div>
+    <div class="cloud"></div>
+    <div class="center-content">
+      <h1 class="temperature"><%=TEMP %> °C</h1>
+      <p class="date"><span id="fecha"></span></p>
+      <p class="time"><span id="hora"></span></p>
+    </div>
+  </div>
+  
+  <script>
+    // Obtener la fecha actual
+    let fechaActual = new Date();
+
+    // Formatear la fecha en formato "día/mes/año"
+    let fechaFormateada = fechaActual.getDate() + '/' + (fechaActual.getMonth() + 1) + '/' + fechaActual.getFullYear();
+
+    // Obtener la hora actual
+    let mins = fechaActual.getMinutes()
+    if(mins < 10) {
+      mins =`0${mins}`
+    }
+    let horaActual = fechaActual.getHours() + ':' + mins;
+
+    // Mostrar la fecha y hora en los elementos span correspondientes
+    document.getElementById('fecha').textContent = fechaFormateada;
+    document.getElementById('hora').textContent = horaActual;
+  </script>
+</body>
+</html>
